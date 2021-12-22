@@ -22,5 +22,7 @@ MonoBehaviour:
   FocusAware: 1
   OptimizeBufferDiscards: 1
   PhaseSync: 0
+  SubsampledLayout: 0
   TargetQuest: 1
   TargetQuest2: 1
+  SystemSplashScreen: {fileID: 0}

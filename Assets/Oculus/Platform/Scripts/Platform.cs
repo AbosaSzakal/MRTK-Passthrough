@@ -23,6 +23,8 @@ namespace Oculus.Platform
     // and so should not be called outside of testing and debugging.
     public static bool LogMessages = false;
 
+    public static string PlatformUninitializedError = "This function requires an initialized Oculus Platform. Run Oculus.Platform.Core.[Initialize|AsyncInitialize] and try again.";
+
     internal static void ForceInitialized()
     {
       IsPlatformInitialized = true;
@@ -169,6 +171,7 @@ namespace Oculus.Platform
 
         return new Request<Models.Room>(CAPI.ovr_Room_UpdateDataStore(roomID, kvps));
       }
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -268,6 +271,7 @@ namespace Oculus.Platform
         return new Request(CAPI.ovr_Matchmaking_ReportResultInsecure(roomID, kvps));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -278,6 +282,7 @@ namespace Oculus.Platform
         return new Request<Models.MatchmakingStats>(CAPI.ovr_Matchmaking_GetStats(pool, maxLevel, approach));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
   }
@@ -288,6 +293,7 @@ namespace Oculus.Platform
     {
       if (!Core.IsInitialized())
       {
+        Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
         return null;
       }
 
@@ -375,6 +381,7 @@ namespace Oculus.Platform
         return new Request<Models.PingResult>(CAPI.ovr_Net_Ping(userID));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
   }
@@ -388,6 +395,7 @@ namespace Oculus.Platform
         return new Request<Models.LeaderboardEntryList>(CAPI.ovr_HTTP_GetWithMessageType(list.NextUrl, (int)Message.MessageType.Leaderboard_GetNextEntries));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -398,6 +406,7 @@ namespace Oculus.Platform
         return new Request<Models.LeaderboardEntryList>(CAPI.ovr_HTTP_GetWithMessageType(list.PreviousUrl, (int)Message.MessageType.Leaderboard_GetPreviousEntries));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
   }
@@ -411,6 +420,7 @@ namespace Oculus.Platform
         return new Request<Models.ChallengeEntryList>(CAPI.ovr_HTTP_GetWithMessageType(list.NextUrl, (int)Message.MessageType.Challenges_GetNextEntries));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -421,6 +431,7 @@ namespace Oculus.Platform
         return new Request<Models.ChallengeEntryList>(CAPI.ovr_HTTP_GetWithMessageType(list.PreviousUrl, (int)Message.MessageType.Challenges_GetPreviousEntries));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -431,6 +442,7 @@ namespace Oculus.Platform
         return new Request<Models.ChallengeList>(CAPI.ovr_HTTP_GetWithMessageType(list.NextUrl, (int)Message.MessageType.Challenges_GetNextChallenges));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -441,6 +453,7 @@ namespace Oculus.Platform
         return new Request<Models.ChallengeList>(CAPI.ovr_HTTP_GetWithMessageType(list.PreviousUrl, (int)Message.MessageType.Challenges_GetPreviousChallenges));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
   }
@@ -571,6 +584,7 @@ namespace Oculus.Platform
         return new Request<Models.AchievementUpdate>(CAPI.ovr_Achievements_AddCount(name, count));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -585,6 +599,7 @@ namespace Oculus.Platform
         return new Request<Models.AchievementUpdate>(CAPI.ovr_Achievements_AddFields(name, fields));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -597,6 +612,7 @@ namespace Oculus.Platform
         return new Request<Models.AchievementDefinitionList>(CAPI.ovr_Achievements_GetAllDefinitions());
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -609,6 +625,7 @@ namespace Oculus.Platform
         return new Request<Models.AchievementProgressList>(CAPI.ovr_Achievements_GetAllProgress());
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -621,6 +638,7 @@ namespace Oculus.Platform
         return new Request<Models.AchievementDefinitionList>(CAPI.ovr_Achievements_GetDefinitionsByName(names, (names != null ? names.Length : 0)));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -633,6 +651,7 @@ namespace Oculus.Platform
         return new Request<Models.AchievementProgressList>(CAPI.ovr_Achievements_GetProgressByName(names, (names != null ? names.Length : 0)));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -646,6 +665,7 @@ namespace Oculus.Platform
         return new Request<Models.AchievementUpdate>(CAPI.ovr_Achievements_Unlock(name));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -663,6 +683,7 @@ namespace Oculus.Platform
         return new Request<Models.ApplicationVersion>(CAPI.ovr_Application_GetVersion());
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -679,6 +700,7 @@ namespace Oculus.Platform
         return new Request<string>(CAPI.ovr_Application_LaunchOtherApp(appID, (IntPtr)deeplink_options));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -711,6 +733,7 @@ namespace Oculus.Platform
         return new Request<Models.AssetFileDeleteResult>(CAPI.ovr_AssetFile_Delete(assetFileID));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -726,6 +749,7 @@ namespace Oculus.Platform
         return new Request<Models.AssetFileDeleteResult>(CAPI.ovr_AssetFile_DeleteById(assetFileID));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -741,6 +765,7 @@ namespace Oculus.Platform
         return new Request<Models.AssetFileDeleteResult>(CAPI.ovr_AssetFile_DeleteByName(assetFileName));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -753,6 +778,7 @@ namespace Oculus.Platform
         return new Request<Models.AssetFileDownloadResult>(CAPI.ovr_AssetFile_Download(assetFileID));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -768,6 +794,7 @@ namespace Oculus.Platform
         return new Request<Models.AssetFileDownloadResult>(CAPI.ovr_AssetFile_DownloadById(assetFileID));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -783,6 +810,7 @@ namespace Oculus.Platform
         return new Request<Models.AssetFileDownloadResult>(CAPI.ovr_AssetFile_DownloadByName(assetFileName));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -795,6 +823,7 @@ namespace Oculus.Platform
         return new Request<Models.AssetFileDownloadCancelResult>(CAPI.ovr_AssetFile_DownloadCancel(assetFileID));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -810,6 +839,7 @@ namespace Oculus.Platform
         return new Request<Models.AssetFileDownloadCancelResult>(CAPI.ovr_AssetFile_DownloadCancelById(assetFileID));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -825,6 +855,7 @@ namespace Oculus.Platform
         return new Request<Models.AssetFileDownloadCancelResult>(CAPI.ovr_AssetFile_DownloadCancelByName(assetFileName));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -838,6 +869,7 @@ namespace Oculus.Platform
         return new Request<Models.AssetDetailsList>(CAPI.ovr_AssetFile_GetList());
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -850,6 +882,7 @@ namespace Oculus.Platform
         return new Request<Models.AssetDetails>(CAPI.ovr_AssetFile_Status(assetFileID));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -864,6 +897,7 @@ namespace Oculus.Platform
         return new Request<Models.AssetDetails>(CAPI.ovr_AssetFile_StatusById(assetFileID));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -878,6 +912,7 @@ namespace Oculus.Platform
         return new Request<Models.AssetDetails>(CAPI.ovr_AssetFile_StatusByName(assetFileName));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -912,6 +947,7 @@ namespace Oculus.Platform
         return new Request<Models.Challenge>(CAPI.ovr_Challenges_Create(leaderboardName, (IntPtr)challengeOptions));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -924,6 +960,7 @@ namespace Oculus.Platform
         return new Request<Models.Challenge>(CAPI.ovr_Challenges_DeclineInvite(challengeID));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -936,6 +973,7 @@ namespace Oculus.Platform
         return new Request(CAPI.ovr_Challenges_Delete(challengeID));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -949,6 +987,7 @@ namespace Oculus.Platform
         return new Request<Models.Challenge>(CAPI.ovr_Challenges_Get(challengeID));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -965,6 +1004,7 @@ namespace Oculus.Platform
         return new Request<Models.ChallengeEntryList>(CAPI.ovr_Challenges_GetEntries(challengeID, limit, filter, startAt));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -980,6 +1020,7 @@ namespace Oculus.Platform
         return new Request<Models.ChallengeEntryList>(CAPI.ovr_Challenges_GetEntriesAfterRank(challengeID, limit, afterRank));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -997,6 +1038,7 @@ namespace Oculus.Platform
         return new Request<Models.ChallengeEntryList>(CAPI.ovr_Challenges_GetEntriesByIds(challengeID, limit, startAt, userIDs, (uint)(userIDs != null ? userIDs.Length : 0)));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1009,6 +1051,7 @@ namespace Oculus.Platform
         return new Request<Models.ChallengeList>(CAPI.ovr_Challenges_GetList((IntPtr)challengeOptions, limit));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1021,6 +1064,7 @@ namespace Oculus.Platform
         return new Request<Models.Challenge>(CAPI.ovr_Challenges_Join(challengeID));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1033,6 +1077,7 @@ namespace Oculus.Platform
         return new Request<Models.Challenge>(CAPI.ovr_Challenges_Leave(challengeID));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1045,6 +1090,7 @@ namespace Oculus.Platform
         return new Request<Models.Challenge>(CAPI.ovr_Challenges_UpdateInfo(challengeID, (IntPtr)challengeOptions));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1064,6 +1110,7 @@ namespace Oculus.Platform
         return new Request<Models.CloudStorageUpdateResponse>(CAPI.ovr_CloudStorage_Delete(bucket, key));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1079,6 +1126,7 @@ namespace Oculus.Platform
         return new Request<Models.CloudStorageData>(CAPI.ovr_CloudStorage_Load(bucket, key));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1093,6 +1141,7 @@ namespace Oculus.Platform
         return new Request<Models.CloudStorageMetadataList>(CAPI.ovr_CloudStorage_LoadBucketMetadata(bucket));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1108,6 +1157,7 @@ namespace Oculus.Platform
         return new Request<Models.CloudStorageConflictMetadata>(CAPI.ovr_CloudStorage_LoadConflictMetadata(bucket, key));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1120,6 +1170,7 @@ namespace Oculus.Platform
         return new Request<Models.CloudStorageData>(CAPI.ovr_CloudStorage_LoadHandle(handle));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1134,6 +1185,7 @@ namespace Oculus.Platform
         return new Request<Models.CloudStorageMetadata>(CAPI.ovr_CloudStorage_LoadMetadata(bucket, key));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1149,6 +1201,7 @@ namespace Oculus.Platform
         return new Request<Models.CloudStorageUpdateResponse>(CAPI.ovr_CloudStorage_ResolveKeepLocal(bucket, key, remoteHandle));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1164,6 +1217,7 @@ namespace Oculus.Platform
         return new Request<Models.CloudStorageUpdateResponse>(CAPI.ovr_CloudStorage_ResolveKeepRemote(bucket, key, remoteHandle));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1191,6 +1245,7 @@ namespace Oculus.Platform
         return new Request<Models.CloudStorageUpdateResponse>(CAPI.ovr_CloudStorage_Save(bucket, key, data, (uint)(data != null ? data.Length : 0), counter, extraData));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1208,6 +1263,7 @@ namespace Oculus.Platform
         return new Request<string>(CAPI.ovr_CloudStorage2_GetUserDirectoryPath());
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1228,6 +1284,7 @@ namespace Oculus.Platform
         return new Request(CAPI.ovr_Entitlement_GetIsViewerEntitled());
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1239,7 +1296,7 @@ namespace Oculus.Platform
 
   public static partial class GroupPresence
   {
-    /// Clear rich presence for running app
+    /// Clear group presence for running app
     ///
     public static Request Clear()
     {
@@ -1248,6 +1305,35 @@ namespace Oculus.Platform
         return new Request(CAPI.ovr_GroupPresence_Clear());
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
+      return null;
+    }
+
+    /// Returns a list of users that can be invited to your current lobby. These
+    /// are pulled from your friends and recently met lists.
+    ///
+    public static Request<Models.UserList> GetInvitableUsers(InviteOptions options)
+    {
+      if (Core.IsInitialized())
+      {
+        return new Request<Models.UserList>(CAPI.ovr_GroupPresence_GetInvitableUsers((IntPtr)options));
+      }
+
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
+      return null;
+    }
+
+    /// Returns a list of users that can be invited to your current lobby. These
+    /// are pulled from your friends and recently met lists.
+    ///
+    public static Request<Models.ApplicationInviteList> GetSentInvites()
+    {
+      if (Core.IsInitialized())
+      {
+        return new Request<Models.ApplicationInviteList>(CAPI.ovr_GroupPresence_GetSentInvites());
+      }
+
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1261,6 +1347,7 @@ namespace Oculus.Platform
         return new Request<Models.InvitePanelResultInfo>(CAPI.ovr_GroupPresence_LaunchInvitePanel((IntPtr)options));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1274,6 +1361,7 @@ namespace Oculus.Platform
         return new Request(CAPI.ovr_GroupPresence_LaunchMultiplayerErrorDialog((IntPtr)options));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1288,6 +1376,7 @@ namespace Oculus.Platform
         return new Request<Models.RejoinDialogResult>(CAPI.ovr_GroupPresence_LaunchRejoinDialog(lobby_session_id, match_session_id, destination_api_name));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1302,10 +1391,25 @@ namespace Oculus.Platform
         return new Request(CAPI.ovr_GroupPresence_LaunchRosterPanel((IntPtr)options));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
-    /// Set rich presence for running app
+    /// Returns a list of users that can be invited to your current lobby. These
+    /// are pulled from your friends and recently met lists.
+    ///
+    public static Request<Models.SendInvitesResult> SendInvites(UInt64[] userIDs)
+    {
+      if (Core.IsInitialized())
+      {
+        return new Request<Models.SendInvitesResult>(CAPI.ovr_GroupPresence_SendInvites(userIDs, (uint)(userIDs != null ? userIDs.Length : 0)));
+      }
+
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
+      return null;
+    }
+
+    /// Set group presence for running app
     ///
     public static Request Set(GroupPresenceOptions groupPresenceOptions)
     {
@@ -1314,11 +1418,12 @@ namespace Oculus.Platform
         return new Request(CAPI.ovr_GroupPresence_Set((IntPtr)groupPresenceOptions));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
     /// Replaces the user's current destination for the provided one. All other
-    /// existing rich presence parameters will remain the same.
+    /// existing group presence parameters will remain the same.
     ///
     public static Request SetDestination(string api_name)
     {
@@ -1327,11 +1432,12 @@ namespace Oculus.Platform
         return new Request(CAPI.ovr_GroupPresence_SetDestination(api_name));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
     /// Set if the current user's destination and session is joinable while keeping
-    /// the other rich presence parameters the same. If the destination or session
+    /// the other group presence parameters the same. If the destination or session
     /// ids of the user is not set, they cannot be set to joinable.
     ///
     public static Request SetIsJoinable(bool is_joinable)
@@ -1341,11 +1447,12 @@ namespace Oculus.Platform
         return new Request(CAPI.ovr_GroupPresence_SetIsJoinable(is_joinable));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
     /// Replaces the user's current lobby session id for the provided one. All
-    /// other existing rich presence parameters will remain the same.
+    /// other existing group presence parameters will remain the same.
     ///
     public static Request SetLobbySession(string id)
     {
@@ -1354,11 +1461,12 @@ namespace Oculus.Platform
         return new Request(CAPI.ovr_GroupPresence_SetLobbySession(id));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
     /// Replaces the user's current match session id for the provided one. All
-    /// other existing rich presence parameters will remain the same.
+    /// other existing group presence parameters will remain the same.
     ///
     public static Request SetMatchSession(string id)
     {
@@ -1367,6 +1475,7 @@ namespace Oculus.Platform
         return new Request(CAPI.ovr_GroupPresence_SetMatchSession(id));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1427,6 +1536,7 @@ namespace Oculus.Platform
         return new Request(CAPI.ovr_IAP_ConsumePurchase(sku));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1440,6 +1550,7 @@ namespace Oculus.Platform
         return new Request<Models.ProductList>(CAPI.ovr_IAP_GetProductsBySKU(skus, (skus != null ? skus.Length : 0)));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1453,6 +1564,7 @@ namespace Oculus.Platform
         return new Request<Models.PurchaseList>(CAPI.ovr_IAP_GetViewerPurchases());
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1468,6 +1580,7 @@ namespace Oculus.Platform
         return new Request<Models.PurchaseList>(CAPI.ovr_IAP_GetViewerPurchasesDurableCache());
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1488,6 +1601,7 @@ namespace Oculus.Platform
         return new Request<Models.Purchase>(CAPI.ovr_IAP_LaunchCheckoutFlow(sku));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1507,6 +1621,7 @@ namespace Oculus.Platform
         return new Request<Models.AssetDetails>(CAPI.ovr_LanguagePack_GetCurrent());
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1525,6 +1640,7 @@ namespace Oculus.Platform
         return new Request<Models.AssetFileDownloadResult>(CAPI.ovr_LanguagePack_SetCurrent(tag));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1542,6 +1658,7 @@ namespace Oculus.Platform
         return new Request<Models.LeaderboardList>(CAPI.ovr_Leaderboard_Get(leaderboardName));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1563,6 +1680,7 @@ namespace Oculus.Platform
         return new Request<Models.LeaderboardEntryList>(CAPI.ovr_Leaderboard_GetEntries(leaderboardName, limit, filter, startAt));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1578,6 +1696,7 @@ namespace Oculus.Platform
         return new Request<Models.LeaderboardEntryList>(CAPI.ovr_Leaderboard_GetEntriesAfterRank(leaderboardName, limit, afterRank));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1595,6 +1714,7 @@ namespace Oculus.Platform
         return new Request<Models.LeaderboardEntryList>(CAPI.ovr_Leaderboard_GetEntriesByIds(leaderboardName, limit, startAt, userIDs, (uint)(userIDs != null ? userIDs.Length : 0)));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1616,6 +1736,7 @@ namespace Oculus.Platform
         return new Request<bool>(CAPI.ovr_Leaderboard_WriteEntry(leaderboardName, score, extraData, (uint)(extraData != null ? extraData.Length : 0), forceUpdate));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1638,6 +1759,7 @@ namespace Oculus.Platform
         return new Request<bool>(CAPI.ovr_Leaderboard_WriteEntryWithSupplementaryMetric(leaderboardName, score, supplementaryMetric, extraData, (uint)(extraData != null ? extraData.Length : 0), forceUpdate));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1645,56 +1767,6 @@ namespace Oculus.Platform
 
   public static partial class Livestreaming
   {
-    /// Return the status of the current livestreaming session if there is one.
-    ///
-    public static Request<Models.LivestreamingStatus> GetStatus()
-    {
-      if (Core.IsInitialized())
-      {
-        return new Request<Models.LivestreamingStatus>(CAPI.ovr_Livestreaming_GetStatus());
-      }
-
-      return null;
-    }
-
-    /// Launch the Livestreaming Flow.
-    ///
-    public static Request LaunchLivestreamingFlow()
-    {
-      if (Core.IsInitialized())
-      {
-        return new Request(CAPI.ovr_Livestreaming_LaunchLivestreamingFlow());
-      }
-
-      return null;
-    }
-
-    /// Pauses the livestreaming session if there is one. NOTE: this function is
-    /// safe to call if no session is active.
-    ///
-    public static Request<Models.LivestreamingStatus> PauseStream()
-    {
-      if (Core.IsInitialized())
-      {
-        return new Request<Models.LivestreamingStatus>(CAPI.ovr_Livestreaming_PauseStream());
-      }
-
-      return null;
-    }
-
-    /// Resumes the livestreaming session if there is one. NOTE: this function is
-    /// safe to call if no session is active.
-    ///
-    public static Request<Models.LivestreamingStatus> ResumeStream()
-    {
-      if (Core.IsInitialized())
-      {
-        return new Request<Models.LivestreamingStatus>(CAPI.ovr_Livestreaming_ResumeStream());
-      }
-
-      return null;
-    }
-
     /// Indicates that the livestreaming session has been updated. You can use this
     /// information to throttle your game performance or increase CPU/GPU
     /// performance. Use Message.GetLivestreamingStatus() to extract the updated
@@ -1727,6 +1799,7 @@ namespace Oculus.Platform
         return new Request<Models.MatchmakingBrowseResult>(CAPI.ovr_Matchmaking_Browse(pool, customQueryData != null ? customQueryData.ToUnmanaged() : IntPtr.Zero));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1757,6 +1830,7 @@ namespace Oculus.Platform
         return new Request<Models.MatchmakingBrowseResult>(CAPI.ovr_Matchmaking_Browse2(pool, (IntPtr)matchmakingOptions));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1777,6 +1851,7 @@ namespace Oculus.Platform
         return new Request(CAPI.ovr_Matchmaking_Cancel(pool, requestHash));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1802,6 +1877,7 @@ namespace Oculus.Platform
         return new Request(CAPI.ovr_Matchmaking_Cancel2());
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1824,6 +1900,7 @@ namespace Oculus.Platform
         return new Request<Models.MatchmakingEnqueueResultAndRoom>(CAPI.ovr_Matchmaking_CreateAndEnqueueRoom(pool, maxUsers, subscribeToUpdates, customQueryData != null ? customQueryData.ToUnmanaged() : IntPtr.Zero));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1853,6 +1930,7 @@ namespace Oculus.Platform
         return new Request<Models.MatchmakingEnqueueResultAndRoom>(CAPI.ovr_Matchmaking_CreateAndEnqueueRoom2(pool, (IntPtr)matchmakingOptions));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1868,6 +1946,7 @@ namespace Oculus.Platform
         return new Request<Models.Room>(CAPI.ovr_Matchmaking_CreateRoom(pool, maxUsers, subscribeToUpdates));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1893,6 +1972,7 @@ namespace Oculus.Platform
         return new Request<Models.Room>(CAPI.ovr_Matchmaking_CreateRoom2(pool, (IntPtr)matchmakingOptions));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1911,6 +1991,7 @@ namespace Oculus.Platform
         return new Request<Models.MatchmakingEnqueueResult>(CAPI.ovr_Matchmaking_Enqueue(pool, customQueryData != null ? customQueryData.ToUnmanaged() : IntPtr.Zero));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1939,6 +2020,7 @@ namespace Oculus.Platform
         return new Request<Models.MatchmakingEnqueueResult>(CAPI.ovr_Matchmaking_Enqueue2(pool, (IntPtr)matchmakingOptions));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1960,6 +2042,7 @@ namespace Oculus.Platform
         return new Request<Models.MatchmakingEnqueueResult>(CAPI.ovr_Matchmaking_EnqueueRoom(roomID, customQueryData != null ? customQueryData.ToUnmanaged() : IntPtr.Zero));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -1990,6 +2073,7 @@ namespace Oculus.Platform
         return new Request<Models.MatchmakingEnqueueResult>(CAPI.ovr_Matchmaking_EnqueueRoom2(roomID, (IntPtr)matchmakingOptions));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2005,6 +2089,7 @@ namespace Oculus.Platform
         return new Request<Models.MatchmakingAdminSnapshot>(CAPI.ovr_Matchmaking_GetAdminSnapshot());
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2019,6 +2104,7 @@ namespace Oculus.Platform
         return new Request<Models.Room>(CAPI.ovr_Matchmaking_JoinRoom(roomID, subscribeToUpdates));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2041,6 +2127,7 @@ namespace Oculus.Platform
         return new Request(CAPI.ovr_Matchmaking_StartMatch(roomID));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2078,6 +2165,7 @@ namespace Oculus.Platform
         return new Request<Models.ShareMediaResult>(CAPI.ovr_Media_ShareToFacebook(postTextSuggestion, filePath, contentType));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2160,6 +2248,7 @@ namespace Oculus.Platform
         return new Request<Models.RoomInviteNotificationList>(CAPI.ovr_Notification_GetRoomInvites());
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2173,6 +2262,7 @@ namespace Oculus.Platform
         return new Request(CAPI.ovr_Notification_MarkAsRead(notificationID));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2189,6 +2279,7 @@ namespace Oculus.Platform
         return new Request<Models.Party>(CAPI.ovr_Party_GetCurrent());
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2206,7 +2297,7 @@ namespace Oculus.Platform
 
   public static partial class RichPresence
   {
-    /// Clear rich presence for running app
+    /// DEPRECATED. Use the clear method in group presence
     ///
     public static Request Clear()
     {
@@ -2215,6 +2306,7 @@ namespace Oculus.Platform
         return new Request(CAPI.ovr_RichPresence_Clear());
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2227,10 +2319,11 @@ namespace Oculus.Platform
         return new Request<Models.DestinationList>(CAPI.ovr_RichPresence_GetDestinations());
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
-    /// Set rich presence for running app
+    /// DEPRECATED. Use GroupPresence.Set().
     ///
     public static Request Set(RichPresenceOptions richPresenceOptions)
     {
@@ -2239,6 +2332,7 @@ namespace Oculus.Platform
         return new Request(CAPI.ovr_RichPresence_Set((IntPtr)richPresenceOptions));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2262,6 +2356,7 @@ namespace Oculus.Platform
         return new Request<Models.Room>(CAPI.ovr_Room_CreateAndJoinPrivate(joinPolicy, maxUsers, subscribeToUpdates));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2284,6 +2379,7 @@ namespace Oculus.Platform
         return new Request<Models.Room>(CAPI.ovr_Room_CreateAndJoinPrivate2(joinPolicy, maxUsers, (IntPtr)roomOptions));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2297,6 +2393,7 @@ namespace Oculus.Platform
         return new Request<Models.Room>(CAPI.ovr_Room_Get(roomID));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2311,6 +2408,7 @@ namespace Oculus.Platform
         return new Request<Models.Room>(CAPI.ovr_Room_GetCurrent());
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2327,6 +2425,7 @@ namespace Oculus.Platform
         return new Request<Models.Room>(CAPI.ovr_Room_GetCurrentForUser(userID));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2339,6 +2438,7 @@ namespace Oculus.Platform
         return new Request<Models.UserList>(CAPI.ovr_Room_GetInvitableUsers());
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2387,6 +2487,7 @@ namespace Oculus.Platform
         return new Request<Models.UserList>(CAPI.ovr_Room_GetInvitableUsers2((IntPtr)roomOptions));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2399,6 +2500,7 @@ namespace Oculus.Platform
         return new Request<Models.RoomList>(CAPI.ovr_Room_GetModeratedRooms());
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2421,6 +2523,7 @@ namespace Oculus.Platform
         return new Request<Models.Room>(CAPI.ovr_Room_InviteUser(roomID, inviteToken));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2442,6 +2545,7 @@ namespace Oculus.Platform
         return new Request<Models.Room>(CAPI.ovr_Room_Join(roomID, subscribeToUpdates));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2463,6 +2567,7 @@ namespace Oculus.Platform
         return new Request<Models.Room>(CAPI.ovr_Room_Join2(roomID, (IntPtr)roomOptions));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2483,6 +2588,7 @@ namespace Oculus.Platform
         return new Request<Models.Room>(CAPI.ovr_Room_KickUser(roomID, userID, kickDurationSeconds));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2498,6 +2604,7 @@ namespace Oculus.Platform
         return new Request(CAPI.ovr_Room_LaunchInvitableUserFlow(roomID));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2515,6 +2622,7 @@ namespace Oculus.Platform
         return new Request<Models.Room>(CAPI.ovr_Room_Leave(roomID));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2534,6 +2642,7 @@ namespace Oculus.Platform
         return new Request<Models.Room>(CAPI.ovr_Room_SetDescription(roomID, description));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2556,6 +2665,7 @@ namespace Oculus.Platform
         return new Request<Models.Room>(CAPI.ovr_Room_UpdateMembershipLockStatus(roomID, membershipLockStatus));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2576,6 +2686,7 @@ namespace Oculus.Platform
         return new Request(CAPI.ovr_Room_UpdateOwner(roomID, userID));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2594,6 +2705,7 @@ namespace Oculus.Platform
         return new Request<Models.Room>(CAPI.ovr_Room_UpdatePrivateRoomJoinPolicy(roomID, newJoinPolicy));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2657,6 +2769,7 @@ namespace Oculus.Platform
         return new Request<Models.User>(CAPI.ovr_User_Get(userID));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2670,6 +2783,7 @@ namespace Oculus.Platform
         return new Request<string>(CAPI.ovr_User_GetAccessToken());
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2690,6 +2804,7 @@ namespace Oculus.Platform
         return new Request<Models.User>(CAPI.ovr_User_GetLoggedInUser());
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2702,6 +2817,7 @@ namespace Oculus.Platform
         return new Request<Models.UserList>(CAPI.ovr_User_GetLoggedInUserFriends());
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2715,6 +2831,7 @@ namespace Oculus.Platform
         return new Request<Models.UserAndRoomList>(CAPI.ovr_User_GetLoggedInUserFriendsAndRooms());
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2742,6 +2859,7 @@ namespace Oculus.Platform
         return new Request<Models.UserAndRoomList>(CAPI.ovr_User_GetLoggedInUserRecentlyMetUsersAndRooms((IntPtr)userOptions));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2756,6 +2874,7 @@ namespace Oculus.Platform
         return new Request<Models.OrgScopedID>(CAPI.ovr_User_GetOrgScopedID(userID));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2769,6 +2888,7 @@ namespace Oculus.Platform
         return new Request<Models.SdkAccountList>(CAPI.ovr_User_GetSdkAccounts());
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2787,6 +2907,7 @@ namespace Oculus.Platform
         return new Request<Models.UserProof>(CAPI.ovr_User_GetUserProof());
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2800,21 +2921,7 @@ namespace Oculus.Platform
         return new Request<Models.LaunchFriendRequestFlowResult>(CAPI.ovr_User_LaunchFriendRequestFlow(userID));
       }
 
-      return null;
-    }
-
-    /// Launch the profile of the given user. The profile surfaces information
-    /// about the user and supports relevant actions that the viewer may take on
-    /// that user, e.g. sending a friend request.
-    /// \param userID User ID for profile being viewed
-    ///
-    public static Request LaunchProfile(UInt64 userID)
-    {
-      if (Core.IsInitialized())
-      {
-        return new Request(CAPI.ovr_User_LaunchProfile(userID));
-      }
-
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2833,6 +2940,7 @@ namespace Oculus.Platform
         return new Request<Models.UserDataStoreUpdateResponse>(CAPI.ovr_UserDataStore_PrivateDeleteEntryByKey(userID, key));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2846,6 +2954,7 @@ namespace Oculus.Platform
         return new Request<Dictionary<string, string>>(CAPI.ovr_UserDataStore_PrivateGetEntries(userID));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2860,6 +2969,7 @@ namespace Oculus.Platform
         return new Request<Dictionary<string, string>>(CAPI.ovr_UserDataStore_PrivateGetEntryByKey(userID, key));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2875,6 +2985,7 @@ namespace Oculus.Platform
         return new Request<Models.UserDataStoreUpdateResponse>(CAPI.ovr_UserDataStore_PrivateWriteEntry(userID, key, value));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2889,6 +3000,7 @@ namespace Oculus.Platform
         return new Request<Models.UserDataStoreUpdateResponse>(CAPI.ovr_UserDataStore_PublicDeleteEntryByKey(userID, key));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2902,6 +3014,7 @@ namespace Oculus.Platform
         return new Request<Dictionary<string, string>>(CAPI.ovr_UserDataStore_PublicGetEntries(userID));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2916,6 +3029,7 @@ namespace Oculus.Platform
         return new Request<Dictionary<string, string>>(CAPI.ovr_UserDataStore_PublicGetEntryByKey(userID, key));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2931,6 +3045,7 @@ namespace Oculus.Platform
         return new Request<Models.UserDataStoreUpdateResponse>(CAPI.ovr_UserDataStore_PublicWriteEntry(userID, key, value));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2948,6 +3063,7 @@ namespace Oculus.Platform
         return new Request<Models.MicrophoneAvailabilityState>(CAPI.ovr_Voip_GetMicrophoneAvailability());
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -2964,6 +3080,7 @@ namespace Oculus.Platform
         return new Request<Models.SystemVoipState>(CAPI.ovr_Voip_SetSystemVoipSuppressed(suppressed));
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -3023,6 +3140,16 @@ namespace Oculus.Platform
 
   public static partial class Vrcamera
   {
+    /// Get vr camera related webrtc data channel messages for update.
+    ///
+    public static void SetGetDataChannelMessageUpdateNotificationCallback(Message<string>.Callback callback)
+    {
+      Callback.SetNotificationCallback(
+        Message.MessageType.Notification_Vrcamera_GetDataChannelMessageUpdate,
+        callback
+      );
+    }
+
     /// Get surface and update action from platform webrtc for update.
     ///
     public static void SetGetSurfaceUpdateNotificationCallback(Message<string>.Callback callback)
@@ -3054,6 +3181,7 @@ namespace Oculus.Platform
         );
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -3074,6 +3202,7 @@ namespace Oculus.Platform
         );
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -3097,6 +3226,31 @@ namespace Oculus.Platform
         );
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
+      return null;
+    }
+
+  }
+
+  public static partial class GroupPresence {
+    public static Request<Models.ApplicationInviteList> GetNextApplicationInviteListPage(Models.ApplicationInviteList list) {
+      if (!list.HasNextPage)
+      {
+        Debug.LogWarning("Oculus.Platform.GetNextApplicationInviteListPage: List has no next page");
+        return null;
+      }
+
+      if (Core.IsInitialized())
+      {
+        return new Request<Models.ApplicationInviteList>(
+          CAPI.ovr_HTTP_GetWithMessageType(
+            list.NextUrl,
+            (int)Message.MessageType.GroupPresence_GetNextApplicationInviteArrayPage
+          )
+        );
+      }
+
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -3120,6 +3274,7 @@ namespace Oculus.Platform
         );
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -3140,6 +3295,7 @@ namespace Oculus.Platform
         );
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -3163,6 +3319,7 @@ namespace Oculus.Platform
         );
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -3186,6 +3343,7 @@ namespace Oculus.Platform
         );
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -3209,6 +3367,7 @@ namespace Oculus.Platform
         );
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -3232,6 +3391,7 @@ namespace Oculus.Platform
         );
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -3255,6 +3415,7 @@ namespace Oculus.Platform
         );
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 
@@ -3275,6 +3436,7 @@ namespace Oculus.Platform
         );
       }
 
+      Debug.LogError(Oculus.Platform.Core.PlatformUninitializedError);
       return null;
     }
 

@@ -167,6 +167,9 @@ public class OVROverlay : MonoBehaviour
 	[Tooltip("When checked, the texture is treated as if the alpha was already premultiplied")]
 	public bool isAlphaPremultiplied = false;
 
+	[Tooltip("When checked, the layer will use bicubic filtering")]
+	public bool useBicubicFiltering = false;
+
 
 	/// <summary>
 	/// Preview the overlay in the editor using a mesh renderer.
@@ -227,7 +230,7 @@ public class OVROverlay : MonoBehaviour
 
 	public int layerId { get; private set; } = 0; // The layer's internal handle in the compositor.
 
-	#endregion
+#endregion
 
 	private static Material tex2DMaterial;
 	private static Material cubeMaterial;
@@ -606,6 +609,10 @@ public class OVROverlay : MonoBehaviour
 			newDesc.LayerFlags |= (int)OVRPlugin.LayerFlags.AndroidSurfaceSwapChain;
 		}
 
+		if (useBicubicFiltering)
+		{
+			newDesc.LayerFlags |= (int)OVRPlugin.LayerFlags.BicubicFiltering;
+		}
 
 		return newDesc;
 	}
@@ -801,7 +808,7 @@ public class OVROverlay : MonoBehaviour
 
 	private void SetupEditorPreview()
 	{
-		#if UNITY_EDITOR
+#if UNITY_EDITOR
 			if (previewInEditor && previewObject == null)
 			{
 				previewObject = new GameObject();
@@ -825,7 +832,7 @@ public class OVROverlay : MonoBehaviour
 			|| shape == OverlayShape.SurfaceProjectedPassthrough;
 	}
 
-	#region Unity Messages
+#region Unity Messages
 
 	void Awake()
 	{
@@ -847,7 +854,7 @@ public class OVROverlay : MonoBehaviour
 
 		// Backward compatibility
 		if (rend != null && textures[0] == null)
-			textures[0] = rend.material.mainTexture;
+			textures[0] = rend.sharedMaterial.mainTexture;
 
 		SetupEditorPreview();
 	}
@@ -860,11 +867,11 @@ public class OVROverlay : MonoBehaviour
 		if (OVRManager.OVRManagerinitialized)
 			InitOVROverlay();
 
-	#if UNITY_EDITOR
+#if UNITY_EDITOR
 		if (previewObject != null) {
 			previewObject.SetActive(true);
 		}
-	#endif
+#endif
 	}
 
 	void InitOVROverlay()
@@ -902,11 +909,11 @@ public class OVROverlay : MonoBehaviour
 	void OnDisable()
 	{
 
-	#if UNITY_EDITOR
+#if UNITY_EDITOR
 		if (previewObject != null) {
 			previewObject.SetActive(false);
 		}
-	#endif
+#endif
 
 		if ((gameObject.hideFlags & HideFlags.DontSaveInBuild) != 0)
 			return;
@@ -943,11 +950,11 @@ public class OVROverlay : MonoBehaviour
 		DestroyLayerTextures();
 		DestroyLayer();
 
-	#if UNITY_EDITOR
+#if UNITY_EDITOR
 		if (previewObject != null) {
 			GameObject.DestroyImmediate(previewObject);
 		}
-	#endif
+#endif
 	}
 
 	bool ComputeSubmit(ref OVRPose pose, ref Vector3 scale, ref bool overlay, ref bool headLocked)

@@ -1,32 +1,32 @@
 {
   "dependencies": {
     "com.microsoft.mixedreality.toolkit.examples": {
-      "version": "file:MixedReality/com.microsoft.mixedreality.toolkit.examples-2.7.2.tgz",
+      "version": "file:MixedReality/com.microsoft.mixedreality.toolkit.examples-2.7.3.tgz",
       "depth": 0,
       "source": "local-tarball",
       "dependencies": {
-        "com.microsoft.mixedreality.toolkit.foundation": "2.7.2",
-        "com.microsoft.mixedreality.toolkit.extensions": "2.7.2"
+        "com.microsoft.mixedreality.toolkit.foundation": "2.7.3",
+        "com.microsoft.mixedreality.toolkit.extensions": "2.7.3"
       }
     },
     "com.microsoft.mixedreality.toolkit.extensions": {
-      "version": "file:MixedReality/com.microsoft.mixedreality.toolkit.extensions-2.7.2.tgz",
+      "version": "file:MixedReality/com.microsoft.mixedreality.toolkit.extensions-2.7.3.tgz",
       "depth": 0,
       "source": "local-tarball",
       "dependencies": {
-        "com.microsoft.mixedreality.toolkit.foundation": "2.7.2"
+        "com.microsoft.mixedreality.toolkit.foundation": "2.7.3"
       }
     },
     "com.microsoft.mixedreality.toolkit.foundation": {
-      "version": "file:MixedReality/com.microsoft.mixedreality.toolkit.foundation-2.7.2.tgz",
+      "version": "file:MixedReality/com.microsoft.mixedreality.toolkit.foundation-2.7.3.tgz",
       "depth": 0,
       "source": "local-tarball",
       "dependencies": {
-        "com.microsoft.mixedreality.toolkit.standardassets": "2.7.2"
+        "com.microsoft.mixedreality.toolkit.standardassets": "2.7.3"
       }
     },
     "com.microsoft.mixedreality.toolkit.standardassets": {
-      "version": "file:MixedReality/com.microsoft.mixedreality.toolkit.standardassets-2.7.2.tgz",
+      "version": "file:MixedReality/com.microsoft.mixedreality.toolkit.standardassets-2.7.3.tgz",
       "depth": 0,
       "source": "local-tarball",
       "dependencies": {
@@ -34,15 +34,15 @@
       }
     },
     "com.microsoft.mixedreality.toolkit.tools": {
-      "version": "file:MixedReality/com.microsoft.mixedreality.toolkit.tools-2.7.2.tgz",
+      "version": "file:MixedReality/com.microsoft.mixedreality.toolkit.tools-2.7.3.tgz",
       "depth": 0,
       "source": "local-tarball",
       "dependencies": {
-        "com.microsoft.mixedreality.toolkit.foundation": "2.7.2"
+        "com.microsoft.mixedreality.toolkit.foundation": "2.7.3"
       }
     },
     "com.unity.collab-proxy": {
-      "version": "1.2.16",
+      "version": "1.9.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
@@ -56,30 +56,41 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.rider": {
-      "version": "1.2.1",
+      "version": "3.0.7",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.test-framework": "1.1.1"
+        "com.unity.ext.nunit": "1.0.6"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.ide.visualstudio": {
+      "version": "2.0.11",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.test-framework": "1.1.9"
       },
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.vscode": {
-      "version": "1.2.3",
+      "version": "1.2.4",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.subsystemregistration": {
-      "version": "1.0.6",
+      "version": "1.1.0",
       "depth": 1,
       "source": "registry",
-      "dependencies": {},
+      "dependencies": {
+        "com.unity.modules.subsystems": "1.0.0"
+      },
       "url": "https://packages.unity.com"
     },
     "com.unity.test-framework": {
-      "version": "1.1.24",
+      "version": "1.1.29",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -90,7 +101,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.textmeshpro": {
-      "version": "2.1.6",
+      "version": "3.0.6",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -99,7 +110,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.timeline": {
-      "version": "1.2.18",
+      "version": "1.5.6",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -120,7 +131,7 @@
       }
     },
     "com.unity.xr.legacyinputhelpers": {
-      "version": "2.1.7",
+      "version": "2.1.8",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -130,7 +141,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.management": {
-      "version": "4.0.7",
+      "version": "4.1.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -143,7 +154,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.oculus": {
-      "version": "1.8.1",
+      "version": "1.10.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -285,6 +296,18 @@
       "depth": 0,
       "source": "builtin",
       "dependencies": {
+        "com.unity.modules.ui": "1.0.0",
+        "com.unity.modules.imgui": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0",
+        "com.unity.modules.uielementsnative": "1.0.0"
+      }
+    },
+    "com.unity.modules.uielementsnative": {
+      "version": "1.0.0",
+      "depth": 1,
+      "source": "builtin",
+      "dependencies": {
+        "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0",
         "com.unity.modules.jsonserialize": "1.0.0"
       }

@@ -19,15 +19,21 @@ namespace Oculus.Platform
       CAPI.ovr_GroupPresenceOptions_SetDestinationApiName(Handle, value);
     }
 
-    /// Set whether or not the person is shown as joinable or not to others
+    /// Set whether or not the person is shown as joinable or not to others. A user
+    /// that is joinable can invite others to join them. Set this to false if other
+    /// users would not be able to join this user. For example: the current session
+    /// is full, or only the host can invite others and the current user is not the
+    /// host.
     public void SetIsJoinable(bool value) {
       CAPI.ovr_GroupPresenceOptions_SetIsJoinable(Handle, value);
     }
 
-    /// This is a session that represents a group/squad/party of users that are to
-    /// remain together across multiple rounds, matches, levels maps, game modes,
-    /// etc. Users with the same lobby session id in their rich presence will be
-    /// considered together.
+    /// This is a session that represents a closer group/squad/party of users. It
+    /// is expected that all users with the same lobby session id can see or hear
+    /// each other. Users with the same lobby session id in their group presence
+    /// will show up in the roster and will show up as "Recently Played With" for
+    /// future invites if they aren't already Oculus friends. This must be set in
+    /// addition to is_joinable being true for a user to use invites.
     public void SetLobbySessionId(string value) {
       CAPI.ovr_GroupPresenceOptions_SetLobbySessionId(Handle, value);
     }
@@ -36,8 +42,8 @@ namespace Oculus.Platform
     /// instance of a map, game mode, round, etc. This can include users from
     /// multiple different lobbies that joined together and the users may or may
     /// not remain together after the match is over. Users with the same match
-    /// session id in their rich presence is also considered to be together but
-    /// have a looser connection than those together in a lobby session.
+    /// session id in their group presence will not show up in the Roster, but will
+    /// show up as "Recently Played with" for future invites.
     public void SetMatchSessionId(string value) {
       CAPI.ovr_GroupPresenceOptions_SetMatchSessionId(Handle, value);
     }

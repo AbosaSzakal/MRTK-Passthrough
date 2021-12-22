@@ -31,12 +31,12 @@ internal class OVRCompositionUtil {
 
 	public static void SafeDestroy(ref GameObject obj)
 	{
-        if (obj != null)
-        {
-            SafeDestroy(obj);
-            obj = null;
-        }
-    }
+		if (obj != null)
+		{
+			SafeDestroy(obj);
+			obj = null;
+		}
+	}
 
 	public static OVRPlugin.CameraDevice ConvertCameraDevice(OVRManager.CameraDevice cameraDevice)
 	{
